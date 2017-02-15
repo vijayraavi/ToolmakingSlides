@@ -18,94 +18,577 @@
 
 
 
+
+
+
+
 #HSLIDE
 ## CHAPTER 1:
 ## TOOL DESIGN
+Tool design is an important step, and should focus on conforming to PowerShell's existing patterns.
+
+#VSLIDE
+### Tools Do One Thing
+
+#VSLIDE
+### Tools are Testable
+
+#VSLIDE
+### Tools are Flexible
+```PowerShell
+Get-Content names.txt | Set-MachineStatus
+Get-ADComputer -filter * | Select -Expand Name | Set-MachineStatus
+Get-ADComputer -filter * | Set-MachineStatus
+Set-MachineStatus -ComputerName (Get-Content names.txt)
+```
+
+#VSLIDE
+### Tools Look Native
+
+#VSLIDE
+### For Example
+Let's run through a problem statement that will lead to a tool design.
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
+
+
+
+
 
 
 #HSLIDE
 ## CHAPTER 2:
 ## START WITH A COMMAND
+Prototyping code/commands in the console saves time and helps prevent bugs.
+
+#VSLIDE
+Experiment with Get-CimInstance, Win32_OperatingSystem, Win32_ComputerSystem, and Win32_LogicalDisk.
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
 ## CHAPTER 3:
 ## BUILD A BASIC FUNCTION AND MODULE
+Turn your console commands into a simple function. This creates the skeleton of the tool you're building.
+
+#VSLIDE
+### Start with a Basic Function
+
+#VSLIDE
+### Design the Input Parameters
+```PowerShell
+function Get-MachineInfo {
+ Param(
+  [string[]]$ComputerName,
+  [string]$LogFailuresToPath,
+  [string]$Protocol,
+  [switch]$ProtocolFallback
+ )}
+```
+
+#VSLIDE
+### Pro Tip
+Don't get lazy about code formatting - ever.
+
+#VSLIDE
+### Code the Function
+
+#VSLIDE
+### The If Construct: Making Decisions
+```PowerShell
+If (<expression>) {
+	# code
+} ElseIf (<expression>) {
+	# coded
+} ElseIf (<expression>) {
+	# code
+} Else {
+	# code
+}
+```
+
+#VSLIDE
+### The ForEach Construct: Enumerating Things
+```PowerShell
+ForEach ($item in $collection) {
+    # code
+}
+```
+
+#VSLIDE
+### Design the Output
+
+#VSLIDE
+### Create a Script Module
+
+#VSLIDE
+### Pre-Req Check
+
+* Run as Administrator
+* Check Execution Policy
+* Verify CIM functionality
+
+#VSLIDE
+### Running the Command
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
 
 
 #HSLIDE
 ## CHAPTER 4:
 ## ADDING CMDLETBINDING AND PARAMETERIZING
+Start adding complexity and sophistication to your tools.
+
+#VSLIDE
+### About CmdletBinding and Common Parameters
+
+#VSLIDE
+* -Verbose
+* -Debug
+* -ErrorAction
+* -ErrorVariable
+* -InformationAction
+* -InformationVariable
+* -OutVariable
+* -PipelineVariable
+
+#VSLIDE
+### Accepting Pipeline Input
+
+#VSLIDE
+### Running Commands in Non-Pipeline Mode
+
+#VSLIDE
+### Running Commands in Pipeline Mode
+
+#VSLIDE
+### Mandatory-ness
+
+#VSLIDE
+### Parameter Validation
+
+#VSLIDE
+### Parameter Aliases
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
 
 
 #HSLIDE
 ## CHAPTER 5:
 ## EMITTING OBJECTS AS OUTPUT
+Object-based output is the key to how PowerShell works.
+
+#VSLIDE
+### Assembling the Information
+
+#VSLIDE
+### Constructing and Emitting Output
+
+#VSLIDE
+### A Quick Test
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
 ## CHAPTER 6:
 ## INTERLUDE... CHANGING YOUR APPROACH
+Let's look at one way in which PowerShell sometimes requires a re-thinking of how you approach scripting.
+
+#VSLIDE
+### The Example
+
+#VSLIDE
+### The Critique
+
+#VSLIDE
+### The Revision
+
+#VSLIDE
+### Let's Discuss
+
+
+
 
 
 #HSLIDE
 ## CHAPTER 7:
 ## USING VERBOSE, WARNING, AND INFORMATIONAL OUTPUT
+Using the proper output channels helps your tools better confirm to native shell practices.
+
+#VSLIDE
+### The Channels
+1. Success (object output)
+2. Errors
+3. Warnings
+4. Verbose
+5. Debug
+6. Informational
+
+#VSLIDE
+### Understanding Channel Preference Variables
+
+#VSLIDE
+### Adding Verbose and Warning Output
+
+#VSLIDE
+### Doing More with Verbose
+
+#VSLIDE
+### Informational Output
+
+#VSLIDE
+### A Detailed Informational Example
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
 
 
 #HSLIDE
 ## CHAPTER 8:
 ## COMMENT-BASED HELP
+An easy way to provide native-looking help for your tools.
+
+#VSLIDE
+### Where to Put Your Help
+
+#VSLIDE
+### Getting Started
+
+#VSLIDE
+### Common Keywords
+* .SYNOPSIS
+* .DESCRIPTION
+* .PARAMETER (parametername)
+* .EXAMPLE
+
+#VSLIDE
+### Less-Common Keywords
+* .INPUTS
+* .NOTES
+* .LINK
+
+#VSLIDE
+### Broken Help?
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
 ## CHAPTER 9:
 ## HANDLING ERRORS
+Dealing with errors adds sophistication and functionality to your tools.
+
+#VSLIDE
+### Understanding Errors and Exceptions
+
+#VSLIDE
+### -ErrorAction is the Key
+```PowerShell
+Get-Service -Name BITS,Nobody,WinRM -EA Continue
+Get-Service -Name BITS,Nobody,WinRM -EA SilentlyContinue
+Get-Service -Name BITS,Nobody,WinRM -EA Inquire
+Get-Service -Name BITS,Nobody,WinRM -EA Stop
+```
+
+#VSLIDE
+### Bad Handling
+
+#VSLIDE
+### Two Reasons for Exception Handling
+
+#VSLIDE
+### Handling Exceptions in Our Tool
+
+#VSLIDE
+### Capturing the Actual Exception
+
+#VSLIDE
+### Handling Errors for Non-Commands
+
+#VSLIDE
+### Going Further with Exception Handling
+
+#VSLIDE
+### Deprecated Exception Handling
+Avoid using the old v1 `Trap` construct.
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
 ## CHAPTER 10:
 ## BASIC DEBUGGING
+Debugging can be less painful once you understand the technique, the goal, and the tools available.
+
+#VSLIDE
+### Two Kinds of Bugs
+
+#VSLIDE
+### The Ultimate Goal of Debugging
+
+#VSLIDE
+### Developing Assumptions
+Let's walk through this example and write down our assumptions about what it's doing.
+
+#VSLIDE
+### Debugging Tool 1: Write-Debug
+
+#VSLIDE
+### Debugging Tool 2: Set-PSBreakpoint
+
+#VSLIDE
+### Debugging Tool 3: The PowerShell ISE
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
 ## GOING DEEPER WITH PARAMETERS
 
 
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
+
+
 #HSLIDE
 ## WRITING FULL HELP
+
+
+
+
 
 
 #HSLIDE
 ## UNIT TESTING YOUR CODE
 
 
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
+
+
 #HSLIDE
 ## EXTENDING OUTPUT TYPES
+
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
 ## ANALYZING YOUR SCRIPT
 
 
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
+
+
 #HSLIDE
 ## PUBLISHING YOUR TOOLS
+
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
 ## BASIC CONTROLLERS: SCRIPTS AND MENUS
 
 
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
+
+
 #HSLIDE
 ## PROXY FUNCTIONS
+
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
 ## WORKING WITH XML
 
 
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
+
+
 #HSLIDE
 ## WORKING WITH JSON
+
+
+#VSLIDE
+### Your Turn
+
+#VSLIDE
+### Reviewing a Solution
+
+#VSLIDE
+### Review Questions
+
+
+
 
 
 #HSLIDE
@@ -120,6 +603,114 @@
 * Table: Like an Excel sheet
 * Rows & Columns: As in Excel
 * Data type: What a column can hold
+
+#VSLIDE
+### CONNECTING
+```PowerShell
+$conn = New-Object -Type System.Data.SqlClient.SqlConnection
+$conn.ConnectionString = 'Server=SQL1;Database=MyDB;Trusted_Connection=True;'
+$conn.Open()
+```
+
+Use ConnectionStrings.com for connection strings.
+
+#VSLIDE
+### QUERIES
+
+* INSERT
+* DELETE
+* UPDATE
+* SELECT
+
+#VSLIDE
+### INSERT
+```SQL
+INSERT INTO <tablename>
+			(Column1, Column2, Column3)
+	   		VALUES (Value1, Value2, Value3)
+```
+
+#VSLIDE
+### DELETE
+```SQL
+DELETE FROM <tablename>
+			WHERE <criteria>
+```
+
+#VSLIDE
+### UPDATE
+```SQL
+UPDATE <tablename>
+	   SET <column> = <value>, <column> = <value>
+	   WHERE <criteria>
+```
+
+#VSLIDE
+### SELECT
+```SQL
+SELECT <column>,<column>
+	   FROM <tablename>
+	   WHERE <criteria>
+	   ORDER BY <column>
+```
+
+#VSLIDE
+### CREATE TABLE
+```SQL
+CREATE TABLE <tablename> (
+	<column> <type>,
+	<column> <type>
+)
+```
+
+#VSLIDE
+### RUNNING QUERIES
+```PowerShell
+$command = New-Object -Type System.Data.SqlClient.SqlCommand
+$command.Connection = $conn
+$command.CommandText = $query
+```
+
+#VSLIDE
+### UPDATE/INSERT/DELETE/CREATE TABLE
+```PowerShell
+$command.ExecuteNonQuery()
+```
+
+#VSLIDE
+### SELECT
+```PowerShell
+$reader = $command.ExecuteReader()
+```
+
+#VSLIDE
+```PowerShell
+$conn = New-Object -Type System.Data.SqlClient.SqlConnection
+$conn.ConnectionString = 'Server=SQL1;Database=MyDB;Trusted_Connection=True;'
+$conn.Open()
+
+$query = "SELECT ComputerName,DiskSpace,DateTaken FROM DiskTracking"
+
+$command = New-Object -Type System.Data.SqlClient.SqlCommand
+$command.Connection = $conn
+$command.CommandText = $query
+$reader = $command.ExecuteReader()
+
+while ($reader.read()) {
+	[psobject]$props = @{'ComputerName' = $reader.GetData(0)
+	                     'DiskSpace' = $reader.GetData(1)
+	                     'DateTaken' = $reader.GetData(2)}
+}
+
+$conn.Close()
+```
+
+#VSLIDE
+### DON'T FORGET ABOUT TOOL DESIGN PATTERNS
+
+
+
+
 
 
 #HSLIDE
