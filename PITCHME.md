@@ -432,7 +432,69 @@ Let's walk through this example and write down our assumptions about what it's d
 
 #HSLIDE
 ## GOING DEEPER WITH PARAMETERS
+Your parameter blocks can do a lot more than you may realize.
 
+#VSLIDE
+### Parameter Position
+
+#VSLIDE
+### Validation
+
+#VSLIDE
+### Multiple Parameter Sets
+
+#VSLIDE
+### ValueFromRemainingArguments
+
+#VSLIDE
+### Help Message
+
+#VSLIDE
+### Aliases (Again)
+
+#VSLIDE
+### More CmdletBinding
+
+#VSLIDE
+### Demo
+
+#VSLIDE
+### Review Questions
+
+
+
+
+
+#HSLIDE
+## WRITING FULL HELP
+Updateable, localizable, native-style help for your tools.
+
+#VSLIDE
+### Downsides of Comment-Based Help
+
+#VSLIDE
+### External Help
+
+#VSLIDE
+### Using Platyps
+
+#VSLIDE
+### Generate Markdown
+
+#VSLIDE
+### The Module Page
+
+#VSLIDE
+### Create External Help from Markdown
+
+#VSLIDE 
+### Supporting Online Help
+
+#VSLIDE
+### "About" Topics
+
+#VSLIDE
+### Making Your Help Updateable
 
 #VSLIDE
 ### Your Turn
@@ -445,19 +507,25 @@ Let's walk through this example and write down our assumptions about what it's d
 
 
 
-
-
-#HSLIDE
-## WRITING FULL HELP
-
-
-
-
-
-
 #HSLIDE
 ## UNIT TESTING YOUR CODE
+Automated unit testing is one sign of a polished, professional toolmaker.
 
+#VSLIDE
+### Starting Point
+
+#VSLIDE
+### Sketching Out the Test
+
+#VSLIDE
+### Making Something to Test
+
+#VSLIDE
+### Expanding the Test
+
+#VSLIDE 
+### But Wait... There's More
+Recommended: "The Pester Book" (http://LeanPub.com/the-pester-book)
 
 #VSLIDE
 ### Your Turn
@@ -474,16 +542,27 @@ Let's walk through this example and write down our assumptions about what it's d
 
 #HSLIDE
 ## EXTENDING OUTPUT TYPES
-
-
-#VSLIDE
-### Your Turn
+PowerShell's Extensible Type System offers useful "hidden" functionality for your tools.
 
 #VSLIDE
-### Reviewing a Solution
+### Understanding Types
 
 #VSLIDE
-### Review Questions
+### The Extensible Type System
+
+#VSLIDE
+### Type Extensions
+* ScriptMethod
+* ScriptProperty
+* AliasProperty
+* PropertySet
+* NoteProperty
+
+#VSLIDE
+### Extending an Object
+
+#VSLIDE
+### Using Update-TypeData
 
 
 
@@ -491,7 +570,13 @@ Let's walk through this example and write down our assumptions about what it's d
 
 #HSLIDE
 ## ANALYZING YOUR SCRIPT
+Script Analyzer can help you develop and maintain best practices in your code.
 
+#VSLIDE
+### Performing a Basic Analysis
+
+#VSLIDE
+### Analyzing the Analysis
 
 #VSLIDE
 ### Your Turn
@@ -508,7 +593,16 @@ Let's walk through this example and write down our assumptions about what it's d
 
 #HSLIDE
 ## PUBLISHING YOUR TOOLS
+Ready to share your masterpiece with your colleagues - or the world?
 
+#VSLIDE
+### Begin with a Manifest
+
+#VSLIDE
+### Publishing to PowerShell Gallery
+
+#VSLIDE
+### Publishing to Private Repositories or Galleries
 
 #VSLIDE
 ### Your Turn
@@ -526,7 +620,6 @@ Let's walk through this example and write down our assumptions about what it's d
 #HSLIDE
 ## BASIC CONTROLLERS: SCRIPTS AND MENUS
 
-
 #VSLIDE
 ### Your Turn
 
@@ -542,7 +635,22 @@ Let's walk through this example and write down our assumptions about what it's d
 
 #HSLIDE
 ## PROXY FUNCTIONS
+A cool way to customize the functionality of PowerShell commands.
 
+#VSLIDE
+### What are Proxy Functions?
+
+#VSLIDE
+### Creating the Proxy Base
+
+#VSLIDE
+### Modifying the Proxy
+
+#VSLIDE
+### Adding Parameters
+
+#VSLIDE
+### Removing Parameters
 
 #VSLIDE
 ### Your Turn
@@ -559,7 +667,25 @@ Let's walk through this example and write down our assumptions about what it's d
 
 #HSLIDE
 ## WORKING WITH XML
+A useful and flexible way to store data.
 
+#VSLIDE
+### Simple: CliXMI
+
+#VSLIDE
+### Importing Native XML
+
+#VSLIDE
+### Modify XML Data
+
+#VSLIDE
+### Add XML Data
+
+#VSLIDE
+### Saving XML
+
+#VSLIDE
+### ConvertTo-XML
 
 #VSLIDE
 ### Your Turn
@@ -576,7 +702,16 @@ Let's walk through this example and write down our assumptions about what it's d
 
 #HSLIDE
 ## WORKING WITH JSON
+A web-centric way of persisting objects as text.
 
+#VSLIDE
+### What is JSON?
+
+#VSLIDE
+### Converting to JSON
+
+#VSLIDE
+### Converting from JSON
 
 #VSLIDE
 ### Your Turn
