@@ -135,12 +135,15 @@ ForEach ($item in $collection) {
     # code
 }
 ```
+Remember: you make up the variable names, they don't have any intrinsic meaning to the shell.
 
 #VSLIDE
 ### Design the Output
+Always output objects - for now, we'll use Select-Object to create that.
 
 #VSLIDE
 ### Create a Script Module
+Save the file with the right name, in the right spot.
 
 #VSLIDE
 ### Pre-Req Check
@@ -151,6 +154,7 @@ ForEach ($item in $collection) {
 
 #VSLIDE
 ### Running the Command
+If it's "not found," check the file naming and location!
 
 #VSLIDE
 ### Your Turn
@@ -184,21 +188,28 @@ Start adding complexity and sophistication to your tools.
 
 #VSLIDE
 ### Accepting Pipeline Input
+* ValueFromPipeline
+* * ValueFromPipelineByPropertyName
 
 #VSLIDE
 ### Running Commands in Non-Pipeline Mode
+BEGIN/PROCESS/END labels are ignored, command runs top-to-bottom
 
 #VSLIDE
 ### Running Commands in Pipeline Mode
+BEGIN runs first, PROCESS runs (with one object placed into the pipeline-accepting variable) once for each input object, END runs last
 
 #VSLIDE
 ### Mandatory-ness
+Shell will prompt for missing value(s).
 
 #VSLIDE
 ### Parameter Validation
+Numerous Validation attributes available.
 
 #VSLIDE
 ### Parameter Aliases
+Provide alternate names for parameters.
 
 #VSLIDE
 ### Your Turn
@@ -215,16 +226,19 @@ Start adding complexity and sophistication to your tools.
 #HSLIDE
 ## CHAPTER 5:
 ## EMITTING OBJECTS AS OUTPUT
-Object-based output is the key to how PowerShell works.
+Object-based output is the key to how PowerShell works. We've used Select-Object up until now, but we'll switch to a custom output object.
 
 #VSLIDE
 ### Assembling the Information
+Creating what will become the output object's properties.
 
 #VSLIDE
 ### Constructing and Emitting Output
+Creating and outputting the object.
 
 #VSLIDE
 ### A Quick Test
+Let's see how it works.
 
 #VSLIDE
 ### Your Turn
@@ -467,16 +481,22 @@ Your parameter blocks can do a lot more than you may realize.
 
 #HSLIDE
 ## WRITING FULL HELP
-Updateable, localizable, native-style help for your tools.
+Update-able, localizable, native-style help for your tools.
 
 #VSLIDE
 ### Downsides of Comment-Based Help
+* Can't localize
+* "Attached" to code
+* Can't update (without updating code)
+* Picky comment syntax
 
 #VSLIDE
 ### External Help
+Made from Microsoft Assistance Markup Language (MAML) XML
 
 #VSLIDE
 ### Using Platyps
+Turns Markdown into MAML and assists in creating initial Markdown
 
 #VSLIDE
 ### Generate Markdown
@@ -494,7 +514,7 @@ Updateable, localizable, native-style help for your tools.
 ### "About" Topics
 
 #VSLIDE
-### Making Your Help Updateable
+### Making Your Help Update-able
 
 #VSLIDE
 ### Your Turn
